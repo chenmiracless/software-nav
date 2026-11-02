@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>常用软件下载导航 · 认准官网</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F6BFF'/%3E%3Cpath d='M16 6l8 6v14H8V12z' fill='white'/%3E%3Cpath d='M13 20h6v6h-6z' fill='%232F6BFF'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#F6F7F9;
+    --surface:#FFFFFF;
+    --ink:#1C2430;
+    --ink-soft:#5B6574;
+    --ink-faint:#8A94A3;
+    --line:#E6EAF0;
+    --accent:#2F6BFF;
+    --accent-deep:#1E4FD8;
+    --accent-soft:#EEF3FF;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(20,30,50,.04),0 4px 14px rgba(20,30,50,.05);
+    --shadow-hover:0 2px 4px rgba(20,30,50,.06),0 12px 28px rgba(20,30,50,.10);
+    --font:"Microsoft YaHei","PingFang SC","Segoe UI",system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--font);background:var(--bg);color:var(--ink);line-height:1.5;min-width:320px}
+  a{color:inherit;text-decoration:none}
+
+  /* ===== Header / Hero ===== */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
+  header.hero{background:linear-gradient(160deg,#F2F6FF 0%,#F6F7F9 55%);border-bottom:1px solid var(--line)}
+  .hero-inner{padding-block:44px 30px}
+  .kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--accent-deep);
+    background:var(--accent-soft);border:1px solid #DCE6FF;padding:6px 12px;border-radius:999px}
+  .kicker svg{width:14px;height:14px}
+  h1{font-size:30px;line-height:1.2;margin:16px 0 10px;font-weight:800;letter-spacing:-.01em}
+  .sub{color:var(--ink-soft);font-size:15px;max-width:620px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;color:var(--ink-soft);font-size:13.5px}
+  .hero-stats b{color:var(--ink);font-weight:700}
+
+  /* ===== Toolbar ===== */
+  .toolbar{position:sticky;top:0;z-index:20;background:rgba(246,247,249,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:14px 0}
+  .toolbar-inner{display:flex;flex-direction:column;gap:12px}
+  .searchbox{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);
+    border-radius:10px;padding:0 14px;height:44px;box-shadow:var(--shadow)}
+  .searchbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,107,255,.12)}
+  .searchbox svg{width:18px;height:18px;color:var(--ink-faint);flex:none}
+  .searchbox input{flex:1;border:0;outline:0;font-size:16px;font-family:inherit;color:var(--ink);background:transparent;height:100%}
+  .searchbox input::placeholder{color:var(--ink-faint)}
+  .searchbox .count{font-size:12.5px;color:var(--ink-faint);white-space:nowrap}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);font-size:13.5px;font-weight:500;
+    padding:7px 13px;border-radius:999px;cursor:pointer;transition:all .15s ease;font-family:inherit}
+  .chip:hover{border-color:#CBD4E1;color:var(--ink)}
+  .chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+  /* ===== Grid ===== */
+  main{padding:24px 0 8px}
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .sentinel{height:1px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;
+    display:flex;gap:14px;align-items:flex-start;box-shadow:var(--shadow);transition:transform .16s ease,box-shadow .16s ease;position:relative}
+  .card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+  .avatar{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:19px;font-weight:700;flex:none;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+  .meta{flex:1;min-width:0}
+  .meta-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .name{font-size:16px;font-weight:700}
+  .cat{font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;line-height:1.6}
+  .desc{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.45}
+  .official{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#0E9F6E;font-weight:600;margin-top:7px}
+  .official svg{width:13px;height:13px}
+  .actions{display:flex;flex-direction:column;gap:8px;flex:none}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;font-family:inherit;font-size:13.5px;font-weight:700;
+    border-radius:9px;padding:8px 14px;cursor:pointer;transition:all .14s ease;border:0;white-space:nowrap}
+  .btn-dl{background:var(--accent);color:#fff}
+  .btn-dl:hover{background:var(--accent-deep)}
+  .btn-dl svg{width:15px;height:15px}
+  .btn-copy{background:transparent;color:var(--ink-faint);border:1px solid var(--line);width:40px;height:36px;padding:0}
+  .btn-copy:hover{color:var(--accent);border-color:#C6D4F7;background:var(--accent-soft)}
+  .btn-copy svg{width:15px;height:15px}
+
+  /* ===== Empty ===== */
+  .empty{display:none;text-align:center;padding:70px 20px;color:var(--ink-soft)}
+  .empty svg{width:56px;height:56px;color:var(--ink-faint);margin:0 auto 16px;display:block}
+  .empty h3{font-size:18px;color:var(--ink);margin-bottom:8px}
+
+  /* ===== Footer tips ===== */
+  footer{margin-top:34px;border-top:1px solid var(--line);background:var(--surface)}
+  .tips{padding-block:26px 34px}
+  .tips h2{font-size:16px;font-weight:800;margin-bottom:14px}
+  .tips-grid{display:grid;grid-template-columns:1fr;gap:12px}
+  .tip{display:flex;gap:12px;padding:14px;border:1px solid var(--line);border-radius:12px;background:#FBFCFE}
+  .tip-num{width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent-deep);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;flex:none}
+  .tip p{font-size:13.5px;color:var(--ink-soft)}
+  .tip b{color:var(--ink)}
+
+  /* ===== Toast ===== */
+  #toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;
+    font-size:14px;padding:11px 20px;border-radius:10px;opacity:0;pointer-events:none;transition:all .25s ease;z-index:50;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:86vw;text-align:center}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== 全屏气泡背景 ===== */
+  .bubbles{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+  .bubble{position:absolute;left:var(--x);bottom:-90px;width:var(--s);height:var(--s);border-radius:50%;
+    border:1px solid rgba(47,107,255,.30);
+    background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.94),rgba(47,107,255,.12) 58%,rgba(47,107,255,.20));
+    box-shadow:inset 0 -4px 10px rgba(47,107,255,.18),0 4px 14px rgba(47,107,255,.10);
+    opacity:0;animation:bubbleRise var(--d) linear var(--delay) infinite}
+  @keyframes bubbleRise{0%{opacity:var(--o);transform:translateY(0) translateX(var(--sway))}
+    50%{transform:translateY(-55vh) translateX(calc(var(--sway) * -1))}
+    100%{opacity:var(--o);transform:translateY(-115vh) translateX(var(--sway))}}
+
+  /* ===== 入场动画 ===== */
+  .hero-inner{animation:heroIn .7s ease both}
+  @keyframes heroIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .card.card-enter{animation:cardIn .5s ease backwards}
+  @keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  /* ===== 小宠物（乘泡小猫）===== */
+  .pet{position:fixed;right:20px;bottom:18px;z-index:30;width:104px;cursor:pointer;
+    animation:petFloat 4.5s ease-in-out infinite;filter:drop-shadow(0 6px 14px rgba(47,107,255,.22))}
+  .pet svg{width:100%;height:auto;display:block}
+  .pet.pop{animation:petPop .5s ease,petFloat 4.5s ease-in-out .5s infinite}
+  @keyframes petFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-11px)}}
+  @keyframes petPop{0%{transform:translateY(0) scale(1)}30%{transform:translateY(-24px) scale(1.12)}60%{transform:translateY(3px) scale(.97)}100%{transform:translateY(0) scale(1)}}
+  .pet-bubble{position:fixed;pointer-events:none;z-index:40;width:16px;height:16px;border-radius:50%;
+    border:1px solid rgba(47,107,255,.50);background:radial-gradient(circle at 32% 30%,rgba(255,255,255,.9),rgba(47,107,255,.16));
+    opacity:0;animation:petBubble .9s ease-out forwards}
+  @keyframes petBubble{0%{opacity:.9;transform:translate(0,0) scale(.6)}100%{opacity:0;transform:translate(var(--bx),var(--by)) scale(1.15)}}
+
+  @media (min-width:560px){ .grid{grid-template-columns:repeat(2,1fr)} }
+  @media (min-width:880px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .toolbar-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
+    .searchbox{max-width:360px}
+    h1{font-size:34px}
+    .tips-grid{grid-template-columns:repeat(3,1fr)}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bubbles" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="kicker">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 11v6"/><path d="M9 9l6 4"/><path d="M12 17l6-4"/></svg>
+      全部链接均指向官方官网
+    </span>
+    <h1>常用软件下载导航</h1>
+    <p class="sub">别再用搜索到的"下载站"了——从第三方站点下载很容易装上全家桶和垃圾软件。认准这里的官网直达链接，装得干净又放心。</p>
+    <div class="hero-stats">
+      <span>收录 <b id="statTotal">0</b> 款常用软件</span>
+      <span>覆盖 <b id="statCat">0</b> 个分类</span>
+      <span>全部为官方渠道</span>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <label class="searchbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="text" placeholder="搜索软件名称，如：微信、压缩" autocomplete="off">
+      <span class="count" id="count"></span>
+    </label>
+    <div class="chips" id="chips"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+  <div class="sentinel" id="sentinel" aria-hidden="true"></div>
+  <div class="empty" id="empty">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M9 11h4"/></svg>
+    <h3>没有找到相关软件</h3>
+    <p>换个关键词试试，或切换分类。</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap tips">
+    <h2>怎样彻底告别"垃圾软件"</h2>
+    <div class="tips-grid">
+      <div class="tip"><span class="tip-num">1</span><p><b>永远走官网，不进"下载站"</b>——搜索引擎第一屏的"高速下载""安全下载"按钮几乎都是捆绑安装器，直接点本页的官网链接最省心。</p></div>
+      <div class="tip"><span class="tip-num">2</span><p><b>安装时看仔细</b>——遇到"推荐软件""默认勾选"就取消勾选，很多全家桶就是这么悄悄装上去的。</p></div>
+      <div class="tip"><span class="tip-num">3</span><p><b>装好后装一款杀毒</b>——如火绒。官网下的软件干净无害，有了杀毒就更有底。</p></div>
+    </div>
+  </div>
+</footer>
+
+<div class="pet" id="pet" title="戳我一下" aria-label="小宠物猫">
+  <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="60" cy="118" r="36" fill="rgba(47,107,255,.16)" stroke="rgba(47,107,255,.45)" stroke-width="2.5"/>
+    <ellipse cx="48" cy="104" rx="9" ry="6" fill="rgba(255,255,255,.85)"/>
+    <path d="M76 62 q20 -4 12 -22" stroke="#F59E0B" stroke-width="6" stroke-linecap="round" fill="none"/>
+    <ellipse cx="60" cy="66" rx="21" ry="20" fill="#F5A623"/>
+    <circle cx="60" cy="42" r="18" fill="#F5A623"/>
+    <path d="M46 32 L38 13 L54 25 Z" fill="#F5A623"/>
+    <path d="M74 32 L82 13 L66 25 Z" fill="#F5A623"/>
+    <path d="M44 27 L42 19 L51 24 Z" fill="#FDE68A"/>
+    <path d="M76 27 L78 19 L69 24 Z" fill="#FDE68A"/>
+    <circle cx="53" cy="40" r="3.2" fill="#333"/>
+    <circle cx="67" cy="40" r="3.2" fill="#333"/>
+    <circle cx="46" cy="47" r="3.4" fill="rgba(255,120,120,.55)"/>
+    <circle cx="74" cy="47" r="3.4" fill="rgba(255,120,120,.55)"/>
+    <path d="M56 49 q4 4 8 0" stroke="#333" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="52" cy="82" rx="7" ry="6" fill="#F5A623"/>
+    <ellipse cx="68" cy="82" rx="7" ry="6" fill="#F5A623"/>
+    <ellipse cx="52" cy="83" rx="4.5" ry="3.4" fill="#FDE68A"/>
+    <ellipse cx="68" cy="83" rx="4.5" ry="3.4" fill="#FDE68A"/>
+  </svg>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ========== 数据：name / initial / url / cat / color / desc ========== */
+var DATA = [
+  // 社交聊天
+  {name:"微信",initial:"微",url:"https://pc.weixin.qq.com/",cat:"social",color:"#07C160",desc:"国民级聊天软件，电脑端同步消息、文件、公众号。"},
+  {name:"QQ",initial:"QQ",url:"https://im.qq.com/pcqq",cat:"social",color:"#12B7F5",desc:"经典即时通讯，群文件、远程桌面、QQ空间一站集齐。"},
+  {name:"钉钉",initial:"钉",url:"https://www.dingtalk.com/",cat:"social",color:"#1682FC",desc:"办公沟通协作，考勤、审批、视频会议都在这。"},
+  {name:"飞书",initial:"飞",url:"https://www.feishu.cn/",cat:"social",color:"#3370FF",desc:"文档、会议、多维表格一体化协作平台。"},
+  {name:"Telegram",initial:"T",url:"https://telegram.org/",cat:"social",color:"#29A9EB",desc:"注重隐私与速度的即时通讯，云端同步消息。"},
+
+  // 办公学习
+  {name:"WPS Office",initial:"W",url:"https://www.wps.cn/",cat:"office",color:"#2B7DE9",desc:"国产办公套件，文档、表格、演示一键搞定。"},
+  {name:"Microsoft 365",initial:"M",url:"https://www.microsoft.com/microsoft-365",cat:"office",color:"#D83B01",desc:"微软官方 Office，Word、Excel、PowerPoint 全家桶。"},
+  {name:"福昕PDF",initial:"福",url:"https://www.foxitsoftware.cn/",cat:"office",color:"#0469C3",desc:"PDF 阅读、编辑、转换的国产专业工具。"},
+  {name:"有道词典",initial:"有",url:"https://cidian.youdao.com/",cat:"office",color:"#00B58A",desc:"查词翻译，划词即译，语言学习好帮手。"},
+  {name:"百度网盘",initial:"盘",url:"https://pan.baidu.com/",cat:"office",color:"#1B6BF2",desc:"云存储与文件传输，资料、视频随时存取。"},
+
+  // 浏览器
+  {name:"谷歌 Chrome",initial:"C",url:"https://www.google.com/chrome/",cat:"browser",color:"#4285F4",desc:"全球最流行的浏览器，插件生态丰富、速度快。"},
+  {name:"微软 Edge",initial:"E",url:"https://www.microsoft.com/edge",cat:"browser",color:"#0078D4",desc:"Windows 自带内核升级版，稳定、省内存、兼容好。"},
+  {name:"Firefox 火狐",initial:"F",url:"https://www.mozilla.org/firefox/",cat:"browser",color:"#FF7139",desc:"注重隐私与开放的浏览器，去广告插件强大。"},
+  {name:"QQ浏览器",initial:"Q",url:"https://browser.qq.com/",cat:"browser",color:"#2D9BF0",desc:"腾讯出品，页面简洁，支持跨端同步。"},
+
+  // 影音娱乐
+  {name:"PotPlayer",initial:"P",url:"https://potplayer.daum.net/",cat:"media",color:"#8E44AD",desc:"本地视频播放神器，格式通吃、画质细腻。"},
+  {name:"网易云音乐",initial:"云",url:"https://music.163.com/",cat:"media",color:"#C20C0C",desc:"海量音乐与歌单，电台、评论氛围绝佳。"},
+  {name:"QQ音乐",initial:"Q",url:"https://y.qq.com/",cat:"media",color:"#31C27C",desc:"腾讯音乐客户端，正版曲库与 MV 一站听。"},
+  {name:"剪映",initial:"剪",url:"https://www.capcut.cn/",cat:"media",color:"#333333",desc:"视频剪辑入门首选，模板丰富、导出方便。"},
+  {name:"哔哩哔哩",initial:"B",url:"https://www.bilibili.com/",cat:"media",color:"#FB7299",desc:"视频社区客户端，追番、看课、刷弹幕。"},
+
+  // 游戏平台
+  {name:"Steam",initial:"S",url:"https://store.steampowered.com/",cat:"game",color:"#3A6FB5",desc:"全球最大游戏平台，买游戏、联机、创意工坊一站搞定。"},
+  {name:"WeGame",initial:"W",url:"https://www.wegame.com.cn/",cat:"game",color:"#FF7A1A",desc:"腾讯游戏平台，国服最常用的游戏商店与启动器。"},
+  {name:"游戏加加",initial:"加",url:"https://gamepp.com/",cat:"game",color:"#3A9BFF",desc:"电竞工具，帧数监控、硬件检测、游戏滤镜与优化。"},
+
+  // 游戏语音
+  {name:"YY语音",initial:"Y",url:"https://www.yy.com/",cat:"gamevoice",color:"#2E9BF0",desc:"老牌游戏语音，多人连麦、直播开黑都在。"},
+  {name:"KOOK语音",initial:"K",url:"https://www.kookapp.cn/",cat:"gamevoice",color:"#7289DA",desc:"开黑语音社区，频道房间、游戏内覆盖、共享屏幕。"},
+  {name:"黑盒语音",initial:"黑",url:"https://chat.xiaoheihe.cn/home/",cat:"gamevoice",color:"#7C5BF0",desc:"小黑盒出品开黑语音，AI降噪、一键添加Steam好友。"},
+
+  // 游戏加速
+  {name:"网易UU加速器",initial:"U",url:"https://uu.163.com/",cat:"booster",color:"#D91F2C",desc:"网易出品，主流游戏覆盖广、口碑稳定。"},
+  {name:"雷神加速器",initial:"雷",url:"https://www.leigod.com/",cat:"booster",color:"#3A6FF0",desc:"按分钟计费可暂停，专线节点多，主机也能加速。"},
+  {name:"迅游加速器",initial:"迅",url:"https://www.xunyou.com/",cat:"booster",color:"#FF8000",desc:"老牌网游加速器，动态路由优化、覆盖主流游戏。"},
+
+  // 远程协助
+  {name:"ToDesk",initial:"T",url:"https://www.todesk.com/",cat:"remote",color:"#2A6DF6",desc:"跨设备远程控制，免费版好用，办公救急首选。"},
+  {name:"网易UU远程",initial:"U",url:"https://uuyc.163.com/",cat:"remote",color:"#D91F2C",desc:"网易出品远程控制，主打远程游戏串流、超低延迟。"},
+
+  // 下载工具
+  {name:"IDM",initial:"I",url:"https://www.internetdownloadmanager.com/",cat:"download",color:"#0083FF",desc:"老牌多线程下载器，大文件、视频下载快到飞起。"},
+  {name:"qBittorrent",initial:"q",url:"https://www.qbittorrent.org/",cat:"download",color:"#2E86DE",desc:"开源 BT 下载工具，无广告、轻量好用。"},
+  {name:"迅雷",initial:"迅",url:"https://www.xunlei.com/",cat:"download",color:"#00A3D9",desc:"国内常见下载软件，加速、影视资源都方便。"},
+
+  // 压缩解压
+  {name:"7-Zip",initial:"7",url:"https://www.7-zip.org/",cat:"compress",color:"#5A6C7F",desc:"开源压缩软件，压缩率高、完全免费无广告。"},
+  {name:"Bandizip",initial:"B",url:"https://www.bandisoft.com/bandizip/",cat:"compress",color:"#00A9A0",desc:"界面友好的解压工具，双击预览、密码记忆。"},
+  {name:"WinRAR",initial:"R",url:"https://www.win-rar.com/",cat:"compress",color:"#1E4E8C",desc:"最经典的压缩软件，兼容几乎所有压缩格式。"},
+
+  // 输入法
+  {name:"搜狗输入法",initial:"搜",url:"https://shurufa.sogou.com/",cat:"ime",color:"#FF7600",desc:"词库丰富、云联想准，打字速度快。"},
+  {name:"百度输入法",initial:"百",url:"https://shurufa.baidu.com/",cat:"ime",color:"#4251B8",desc:"皮肤多、输入体验顺滑，支持多种方言。"},
+
+  // 系统安全
+  {name:"火绒安全",initial:"火",url:"https://www.huorong.cn/",cat:"security",color:"#F0713C",desc:"轻量杀毒软件，无弹窗、无捆绑，安静又干净。"},
+  {name:"腾讯电脑管家",initial:"管",url:"https://guanjia.qq.com/",cat:"security",color:"#4DB3E2",desc:"杀毒与电脑清理二合一，适合新手使用。"},
+  {name:"NVIDIA 驱动",initial:"N",url:"https://www.nvidia.cn/drivers/",cat:"security",color:"#76B900",desc:"显卡驱动官方下载，游戏帧率与画面更新的关键。"}
+];
+
+var CATS = {
+  social:{label:"社交聊天",color:"#2F6BFF"},
+  office:{label:"办公学习",color:"#7C5CF0"},
+  browser:{label:"浏览器",color:"#0E9F6E"},
+  media:{label:"影音娱乐",color:"#E4574F"},
+  game:{label:"游戏",color:"#8B5CF6"},
+  gamevoice:{label:"游戏语音",color:"#E16B8C"},
+  booster:{label:"游戏加速",color:"#F0914B"},
+  remote:{label:"远程协助",color:"#5B8DEF"},
+  download:{label:"下载工具",color:"#E08A1E"},
+  compress:{label:"压缩解压",color:"#0096AB"},
+  ime:{label:"输入法",color:"#B06AB3"},
+  security:{label:"系统安全",color:"#3B7A57"}
+};
+
+var state = {cat:"all", kw:""};
+var BATCH = 12;
+var listCache = [];
+var pending = 0;
+var sentinelEl = document.getElementById("sentinel");
+var io = null;
+
+var grid = document.getElementById("grid");
+var empty = document.getElementById("empty");
+var toastEl = document.getElementById("toast");
+var toastTimer = null;
+
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ toastEl.classList.remove("show"); }, 2000);
+}
+
+function filtered(){
+  var kw = state.kw.trim().toLowerCase();
+  return DATA.filter(function(it){
+    if(state.cat !== "all" && it.cat !== state.cat) return false;
+    if(!kw) return true;
+    return it.name.toLowerCase().indexOf(kw) > -1 || it.desc.toLowerCase().indexOf(kw) > -1 || CATS[it.cat].label.indexOf(kw) > -1;
+  });
+}
+
+function renderChips(){
+  var box = document.getElementById("chips");
+  var html = '<button class="chip'+(state.cat==="all"?" active":"")+'" data-cat="all">全部</button>';
+  Object.keys(CATS).forEach(function(k){
+    var c = CATS[k];
+    html += '<button class="chip'+(state.cat===k?" active":"")+'" data-cat="'+k+'">'+c.label+'</button>';
+  });
+  box.innerHTML = html;
+}
+
+function copyUrl(url, name){
+  var done = function(){ showToast(name + " 的官网链接已复制"); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done, function(){ fallbackCopy(url, name, done); });
+  } else { fallbackCopy(url, name, done); }
+}
+function fallbackCopy(url, name, done){
+  var ta = document.createElement("textarea");
+  ta.value = url; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); done(); }catch(e){ showToast("复制失败，请手动复制"); }
+  document.body.removeChild(ta);
+}
+
+function cardHtml(it){
+  var c = CATS[it.cat];
+  return '<article class="card card-enter">'
+    + '<div class="avatar" style="background:'+it.color+'">'+it.initial+'</div>'
+    + '<div class="meta">'
+      + '<div class="meta-top"><span class="name">'+it.name+'</span>'
+      + '<span class="cat" style="background:'+c.color+'1A;color:'+c.color+'">'+c.label+'</span></div>'
+      + '<p class="desc">'+it.desc+'</p>'
+      + '<span class="official"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M9 12l2 2 4-4"/></svg>官方渠道 · 官网直达</span>'
+    + '</div>'
+    + '<div class="actions">'
+      + '<a class="btn btn-dl" href="'+it.url+'" target="_blank" rel="noopener noreferrer">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M6 11l6 5 6-5"/><path d="M4 20h16"/></svg>官网下载</a>'
+      + '<button class="btn btn-copy" title="复制官网链接" data-url="'+it.url+'" data-name="'+it.name+'">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>'
+    + '</div>'
+  + '</article>';
+}
+
+function loadBatch(){
+  if(!sentinelEl) return;
+  var end = Math.min(pending + BATCH, listCache.length);
+  var html = "";
+  for(var i=pending;i<end;i++){ html += cardHtml(listCache[i]); }
+  if(html){ grid.insertAdjacentHTML("beforeend", html); pending = end; }
+  sentinelEl.style.display = pending < listCache.length ? "block" : "none";
+}
+
+function onScroll(){
+  if(!sentinelEl) return;
+  var r = sentinelEl.getBoundingClientRect();
+  if(r.top < window.innerHeight + 200){ loadBatch(); }
+}
+
+function observeSentinel(){
+  if(!sentinelEl) return;
+  if(io){ io.disconnect(); io = null; }
+  window.removeEventListener("scroll", onScroll);
+  if("IntersectionObserver" in window){
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ loadBatch(); } });
+    }, {rootMargin:"200px 0px"});
+    io.observe(sentinelEl);
+  } else {
+    window.addEventListener("scroll", onScroll, {passive:true});
+  }
+}
+
+function render(){
+  listCache = filtered();
+  pending = 0;
+  document.getElementById("count").textContent = listCache.length + " 款";
+  empty.style.display = listCache.length ? "none" : "block";
+  grid.style.display = listCache.length ? "grid" : "none";
+  grid.innerHTML = "";
+  loadBatch();
+  observeSentinel();
+  document.getElementById("statTotal").textContent = DATA.length;
+  document.getElementById("statCat").textContent = Object.keys(CATS).length;
+}
+
+/* 事件绑定 */
+document.getElementById("chips").addEventListener("click", function(e){
+  var btn = e.target.closest(".chip");
+  if(!btn) return;
+  state.cat = btn.getAttribute("data-cat");
+  renderChips(); render();
+});
+
+document.getElementById("search").addEventListener("input", function(e){
+  state.kw = e.target.value; render();
+});
+
+document.addEventListener("click", function(e){
+  var copy = e.target.closest(".btn-copy");
+  if(copy){ copyUrl(copy.getAttribute("data-url"), copy.getAttribute("data-name")); }
+});
+
+/* ===== 全屏气泡 ===== */
+function initBubbles(){
+  var box = document.querySelector(".bubbles");
+  if(!box) return;
+  var n = 22;
+  for(var i=0;i<n;i++){
+    var b = document.createElement("span");
+    b.className = "bubble";
+    b.style.setProperty("--s", (8+Math.random()*102).toFixed(0)+"px");
+    b.style.setProperty("--x", (Math.random()*100).toFixed(1)+"%");
+    b.style.setProperty("--o", (0.15+Math.random()*0.18).toFixed(2));
+    b.style.setProperty("--sway", ((Math.random()*40-20)).toFixed(0)+"px");
+    b.style.setProperty("--d", (14+Math.random()*20).toFixed(0)+"s");
+    b.style.setProperty("--delay", (-Math.random()*28).toFixed(2)+"s");
+    box.appendChild(b);
+  }
+}
+
+/* ===== 小宠物交互 ===== */
+var pet = document.getElementById("pet");
+if(pet){
+  pet.addEventListener("click", function(){
+    pet.classList.remove("pop");
+    void pet.offsetWidth;
+    pet.classList.add("pop");
+    var r = pet.getBoundingClientRect();
+    for(var i=0;i<3;i++){
+      var b = document.createElement("span");
+      b.className = "pet-bubble";
+      b.style.left = (r.left + r.width*0.25 + Math.random()*r.width*0.5) + "px";
+      b.style.top = (r.top - 10) + "px";
+      b.style.setProperty("--bx", ((Math.random()*44-22)).toFixed(0)+"px");
+      b.style.setProperty("--by", (-(46+Math.random()*54)).toFixed(0)+"px");
+      document.body.appendChild(b);
+      (function(el){ setTimeout(function(){ if(el && el.parentNode) el.parentNode.removeChild(el); }, 950); })(b);
+    }
+  });
+}
+
+/* 初始化 */
+initBubbles();
+renderChips(); render();
+</script>
+</body>
+</html>
